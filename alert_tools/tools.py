@@ -1,3 +1,25 @@
+import os
+import io
+import gzip
+import tarfile
+import warnings
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from avro.datafile import DataFileReader, DataFileWriter
+from avro.io import DatumReader, DatumWriter
+import fastavro
+
+from astropy.time import Time
+from astropy.io import fits
+import astropy.units as u
+import aplpy
+%matplotlib inline
+
+import get_dcmag as dc
+
 def get_dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
     if (dflc.loc[0,'distpsnr1'] > match_radius_arcsec) & (dflc.loc[0,'sgscore1'] < star_galaxy_threshold):
         print('Object is not a variable star.')
