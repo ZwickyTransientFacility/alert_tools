@@ -1,17 +1,19 @@
 from setuptools import setup
 
-setup(name='get_dcmag',
+setup(name='alert_tools',
       version='0.1',
       description='Get DC mag',
       url='n/a',
-      author='MG',
-      author_email='flyingcircus@example.com',
+      author='M.Gallardo, E.Bellm',
+      author_email='mgallardo@astro.ncu.edu.tw, ebellm@uw.edu',
       license='MIT',
-      packages=['get_dcmag'],
+      packages=['alert_tools'],
       install_requires=[
           'markdown',
 		  'numpy',
-		  'pandas'		  
+		  'pandas',
+		  'astropy',
+		  'aplpy'
       ],
       zip_safe=False)
 
