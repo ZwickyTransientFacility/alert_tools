@@ -47,13 +47,21 @@ def dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
         
 
         
+        
 def band_amplitude(dflc, band=2):
+     if 'dc_mag' in dflc.columns.values:
+	mag_key= 'dc_mag'
+     else:
+	mag_key= 'magpsf'
+    	
     z = dflc[dflc.fid==band]
-    ampli=z['magpsf'].max()-z['magpsf'].min()
-    print('Max:',z['magpsf'].max())
-    print('Min:',z['magpsf'].min())
+    ampli=z[mag_key].max()-z[mag_key].min()
+    print('Max:',z[mag_key].max())
+    print('Min:',z[mag_key].min())
     print('Amplitude:',ampli)
     print('Is amplitude > 1.0 mag?',ampli>=1)
+
+
 
 def plot_dc_lightcurve(dflc, days_ago=True):
     
