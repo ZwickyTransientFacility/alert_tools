@@ -15,5 +15,3 @@ setup(name='alert_tools',
 		  'astropy'
       ],
       zip_safe=False)
-
-have it use dcmag if it is present.
