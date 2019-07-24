@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from astropy.time import Time
 
 def make_dataframe(packet):
     dfc = pd.DataFrame(packet['candidate'], index=[0])
