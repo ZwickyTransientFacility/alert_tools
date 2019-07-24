@@ -41,7 +41,8 @@ def dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
         dflc['dc_mag_ulim'] = -2.5 * np.log10(10**(-0.4*dflc['magnr']) + 10**(-0.4*dflc['diffmaglim']))   #v
         dflc['dc_mag_llim'] = -2.5 * np.log10(10**(-0.4*dflc['magnr']) - 10**(-0.4*dflc['diffmaglim']))   #v2
 	
-	return dflc
+	
+        return dflc
         
 
         
