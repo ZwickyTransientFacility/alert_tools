@@ -49,10 +49,10 @@ def dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
         
         
 def band_amplitude(dflc, band=2):
-     if 'dc_mag' in dflc.columns.values:
-	mag_key= 'dc_mag'
-     else:
-	mag_key= 'magpsf'
+    if 'dc_mag' in dflc.columns.values:
+       mag_key= 'dc_mag'
+    else:
+       mag_key= 'magpsf'
     	
     z = dflc[dflc.fid==band]
     ampli=z[mag_key].max()-z[mag_key].min()
