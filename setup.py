@@ -9,9 +9,10 @@ setup(name='alert_tools',
       license='MIT',
       packages=['alert_tools'],
       install_requires=[
-          'markdown',
 		  'numpy',
 		  'pandas',
-		  'astropy'
+		  'astropy',
+                  'matplotlib',
+                  'fastavro'
       ],
       zip_safe=False)
