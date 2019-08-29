@@ -3,6 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from astropy.time import Time
 
+def open_avro(fname):
+    with open(fname,'rb') as f:
+        freader = fastavro.reader(f)
+        schema = freader.writer_schema
+        for packet in freader:
+            return packet
+
 def make_dataframe(packet):
     dfc = pd.DataFrame(packet['candidate'], index=[0])
     df_prv = pd.DataFrame(packet['prv_candidates'])
