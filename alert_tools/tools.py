@@ -52,21 +52,23 @@ def dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
 	
         return dflc
         
-
-        
-        
 def band_amplitude(dflc, band=2):
     if 'dc_mag' in dflc.columns.values:
        mag_key= 'dc_mag'
     else:
        mag_key= 'magpsf'
-    	
+
     z = dflc[dflc.fid==band]
     ampli=z[mag_key].max()-z[mag_key].min()
     print('Max:',z[mag_key].max())
     print('Min:',z[mag_key].min())
     print('Amplitude:',ampli)
     print('Is amplitude > 1.0 mag?',ampli>=1)
+    
+    return ampli
+        
+        
+
 
 
 
@@ -83,7 +85,7 @@ def plot_dc_lightcurve(dflc, days_ago=True):
         t = dflc.jd
         xlabel = 'Time (JD)'
     
-    plt.figure()
+    fig=plt.figure()
     for fid, color in filter_color.items():
         # plot detections in this filter:
         w = (dflc.fid == fid) & ~dflc.magpsf.isnull()
@@ -98,6 +100,8 @@ def plot_dc_lightcurve(dflc, days_ago=True):
     plt.gca().invert_yaxis()
     plt.xlabel(xlabel)
     plt.ylabel('Magnitude')
+	
+	return fig
 
 	
 def get_dc_mag(dflc, band=2, days_ago=True):
@@ -106,5 +110,11 @@ def get_dc_mag(dflc, band=2, days_ago=True):
     else:
         dflc=dflc
 
-    band_amplitude(dflc, band=band)
-    plot_dc_lightcurve(dflc, days_ago=days_ago)
+    amplitude=band_amplitude(dflc, band=band)
+	
+    fig=plot_dc_lightcurve(dflc, days_ago=days_ago)
+	
+	return dflc, amplitude, fig
+	
+	
+
