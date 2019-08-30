@@ -13,8 +13,8 @@ def open_avro(fname):
 def make_dataframe(packet):
     dfc = pd.DataFrame(packet['candidate'], index=[0])
     df_prv = pd.DataFrame(packet['prv_candidates'])
-    dflc = pd.concat([dfc,df_prv], ignore_index=True,sort=True)	
-    dflc.objectId = packet['objectId']	
+    dflc = pd.concat([dfc,df_prv], ignore_index=True,sort=True)    
+    dflc.objectId = packet['objectId']    
     dflc.candid = packet['candid']
     return dflc
 
@@ -48,8 +48,8 @@ def dcmag(dflc, match_radius_arcsec=1.5, star_galaxy_threshold = 0.4,band=2):
             (10**(-0.4*dflc['magpsf']) * dflc['sigmapsf'])**2.) / 10**(-0.4*dflc['magnr']) + dflc['sign'] * 10**(-0.4*dflc['magpsf']) #u
         dflc['dc_mag_ulim'] = -2.5 * np.log10(10**(-0.4*dflc['magnr']) + 10**(-0.4*dflc['diffmaglim']))   #v
         dflc['dc_mag_llim'] = -2.5 * np.log10(10**(-0.4*dflc['magnr']) - 10**(-0.4*dflc['diffmaglim']))   #v2
-	
-	
+    
+    
         return dflc
         
 def band_amplitude(dflc, band=2):
@@ -100,10 +100,10 @@ def plot_dc_lightcurve(dflc, days_ago=True):
     plt.gca().invert_yaxis()
     plt.xlabel(xlabel)
     plt.ylabel('Magnitude')
-	
-	return fig
+    
+    return fig
 
-	
+    
 def get_dc_mag(dflc, band=2, days_ago=True):
     if 'dc_mag' not in dflc.columns.values:
         dflc = dcmag(dflc)
@@ -111,10 +111,7 @@ def get_dc_mag(dflc, band=2, days_ago=True):
         dflc=dflc
 
     amplitude=band_amplitude(dflc, band=band)
-	
+    
     fig=plot_dc_lightcurve(dflc, days_ago=days_ago)
-	
-	return dflc, amplitude, fig
-	
-	
-
+    
+    return dflc, amplitude, fig
